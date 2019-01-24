@@ -1,0 +1,41 @@
+<div class="alert alert-warning">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>Note!</strong> Please scroll down for the chart.
+</div>
+<h1>Show Block Chain</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nonce</th>
+      <th>Data</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <%= for block <- @blocks do %>
+    <tr>
+      <td><%= block.nonce %></td>
+      <td>
+        <table>
+          <tbody>
+            <%= for data <- block.data do %>
+              <tr>
+                <td><%= data %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<canvas id="lineChart" width="400" height="400"></canvas>
+
+<script type="text/javascript">
+
+window.transfer_data = <%= raw(Poison.encode! (@blocks)) %>
+
+</script>
